@@ -1,16 +1,17 @@
 # SaveFrom 日本語版プロキシ (Render / Railway)
 
-このリポジトリは、**日本語版の SaveFrom** (`https://ja.savefrom.net/`) を **Render** と **Railway** でプロキシするためのシンプルな Node.js アプリです。
+このリポジトリは、**日本語版の SaveFrom** (`https://ja.savefrom.net/195kT/`) を **Render** と **Railway** でプロキシするためのシンプルな Node.js アプリです。
 
-アクセスした時点で最初から日本語で表示されます。
+プロキシのルート URL (`/`) を開くと、プロキシ自身の `/195kT/` に移動し、そのページと後続のリクエストを `ja.savefrom.net` へ中継します。ブラウザから SaveFrom へ直接移動するのではなく、プロキシを経由します。
 
 ## 機能
 
-- すべてのリクエストを `https://ja.savefrom.net` に転送
-- 最初から日本語表示
+- `/` を開くと、プロキシ経由の `/195kT/` を表示
+- ページ内の各パスも `https://ja.savefrom.net` に転送
 - `/health` エンドポイント付き（Render / Railway のヘルスチェック対応）
 - CORS 対応
-- 環境変数でターゲットURL変更可能
+- `TARGET_URL` 環境変数でプロキシ先 URL を変更可能
+- `Accept-Language` で日本語を優先
 
 ## デプロイ方法
 
@@ -26,8 +27,8 @@
 
 | 変数名 | 説明 | デフォルト |
 |--------|------|-----------|
-| `TARGET_URL` | プロキシ先URL | `https://ja.savefrom.net` |
-| `PORT` | ポート番号 | Railwayが自動設定 |
+| `TARGET_URL` | プロキシ先 URL（パスを含む） | `https://ja.savefrom.net/195kT/` |
+| `PORT` | ポート番号 | Railway が自動設定 |
 
 ### 2. Render にデプロイ
 
@@ -43,7 +44,7 @@
 
 5. **Advanced** で環境変数を追加（任意）：
 
-   - `TARGET_URL` = `https://ja.savefrom.net`
+   - `TARGET_URL` = `https://ja.savefrom.net/195kT/`
 
 6. **Create Web Service** をクリック
 
@@ -56,7 +57,7 @@ npm install
 npm start
 ```
 
-ブラウザで `http://localhost:3000` にアクセスすると、**日本語版の SaveFrom** が表示されます。
+ブラウザで `http://localhost:3000` を開くと、プロキシ経由で `/195kT/` が表示されます。`/health` にアクセスするとヘルスチェック結果を確認できます。
 
 ## 注意事項
 
