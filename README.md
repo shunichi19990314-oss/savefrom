@@ -1,10 +1,13 @@
-# SaveFrom Cloudflare Worker Proxy (Render / Railway)
+# SaveFrom 日本語版プロキシ (Render / Railway)
 
-このリポジトリは、Cloudflare Worker (`https://savefrom.shunichi-0314.workers.dev/`) を **Render** と **Railway** でプロキシするためのシンプルな Node.js アプリです。
+このリポジトリは、**日本語版の SaveFrom** (`https://ja.savefrom.net/`) を **Render** と **Railway** でプロキシするためのシンプルな Node.js アプリです。
+
+アクセスした時点で最初から日本語で表示されます。
 
 ## 機能
 
-- すべてのリクエストを指定の Cloudflare Worker に転送
+- すべてのリクエストを `https://ja.savefrom.net` に転送
+- 最初から日本語表示
 - `/health` エンドポイント付き（Render / Railway のヘルスチェック対応）
 - CORS 対応
 - 環境変数でターゲットURL変更可能
@@ -23,7 +26,7 @@
 
 | 変数名 | 説明 | デフォルト |
 |--------|------|-----------|
-| `TARGET_URL` | プロキシ先URL | `https://savefrom.shunichi-0314.workers.dev` |
+| `TARGET_URL` | プロキシ先URL | `https://ja.savefrom.net` |
 | `PORT` | ポート番号 | Railwayが自動設定 |
 
 ### 2. Render にデプロイ
@@ -40,7 +43,7 @@
 
 5. **Advanced** で環境変数を追加（任意）：
 
-   - `TARGET_URL` = `https://savefrom.shunichi-0314.workers.dev`
+   - `TARGET_URL` = `https://ja.savefrom.net`
 
 6. **Create Web Service** をクリック
 
@@ -53,9 +56,9 @@ npm install
 npm start
 ```
 
-ブラウザで `http://localhost:3000` にアクセスすると、Cloudflare Worker の内容が表示されます。
+ブラウザで `http://localhost:3000` にアクセスすると、**日本語版の SaveFrom** が表示されます。
 
 ## 注意事項
 
-- このプロキシは Cloudflare Worker 経由で `savefrom.net` にアクセスするためのものです。
-- 過度な利用は Cloudflare や各プラットフォームの利用規約に抵触する可能性があります。自己責任でご利用ください。
+- このプロキシは `ja.savefrom.net` にアクセスするためのものです。
+- 過度な利用は各プラットフォームの利用規約に抵触する可能性があります。自己責任でご利用ください。

@@ -1,7 +1,7 @@
 {
   "name": "savefrom",
-  "version": "1.0.0",
-  "description": "Reverse proxy to https://savefrom.shunichi-0314.workers.dev/ for Render and Railway",
+  "version": "1.0.1",
+  "description": "Reverse proxy to Japanese version of SaveFrom (ja.savefrom.net) for Render and Railway",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

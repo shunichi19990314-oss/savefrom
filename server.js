@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Target Cloudflare Worker
-const TARGET = process.env.TARGET_URL || 'https://savefrom.shunichi-0314.workers.dev';
+// 日本語版を最初から表示する
+const TARGET = process.env.TARGET_URL || 'https://ja.savefrom.net';
 
 app.use(cors());
 
@@ -22,7 +22,9 @@ app.use('/', createProxyMiddleware({
   secure: true,
   followRedirects: true,
   onProxyReq: (proxyReq, req, res) => {
-    // Optional: remove some headers if needed
+    // 日本語を優先するヘッダーを追加
+    proxyReq.setHeader('Accept-Language', 'ja,ja-JP;q=0.9,en;q=0.8');
+    // 不要なヘッダーを削除
     proxyReq.removeHeader('x-forwarded-for');
     proxyReq.removeHeader('x-real-ip');
   },
